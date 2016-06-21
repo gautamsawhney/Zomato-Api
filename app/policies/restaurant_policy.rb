@@ -21,6 +21,16 @@ class RestaurantPolicy < ApplicationPolicy
   end
 
   # Autobot: Permitted Attributes
+def permitted_attributes
+                  #add_here
+if user.restaurant_owner?
+              [:name, :location, :user_id]
+              elsif user.super_admin?
+              [:name, :location, :user_id]
+              else
+                []
+               end
+                end
 
 
 

@@ -21,6 +21,18 @@ class PostPolicy < ApplicationPolicy
   end
 
   # Autobot: Permitted Attributes
+def permitted_attributes
+                  #add_here
+if user.restaurant_owner?
+              [:title, :user_id]
+              elsif user.super_admin?
+              [:title, :user_id]
+              elsif user.mod?
+              [:title, :user_id]
+              else
+                []
+               end
+                end
 
 
 
