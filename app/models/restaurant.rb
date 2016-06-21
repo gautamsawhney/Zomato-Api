@@ -8,6 +8,7 @@ class Restaurant < ApplicationRecord
   # File Upload
 
   # Autocode: Validations
+  validates_presence_of :location
   validates_uniqueness_of :name
   validates_presence_of :name
 
