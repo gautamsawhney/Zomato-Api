@@ -3,19 +3,21 @@ class Api::V1::RestaurantsController < Api::V1::BaseController
 
   # GET /restaurants
   def index
-    @restaurants = Restaurant.page(params[:page]).per(params[:per])
+    @restaurants = policy_scope(Restaurant).page(params[:page]).per(params[:per])
 
     render json: @restaurants
   end
 
   # GET /restaurants/1
   def show
+    authorize @restaurant
     render json: @restaurant
   end
 
   # POST /restaurants
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = Restaurant.new(permitted_attributes(Restaurant.new))
+    authorize @restaurant #Authorizing
 
     if @restaurant.save
       render json: @restaurant, status: :created
@@ -26,7 +28,8 @@ class Api::V1::RestaurantsController < Api::V1::BaseController
 
   # PATCH/PUT /restaurants/1
   def update
-    if @restaurant.update(restaurant_params)
+    authorize @restaurant
+    if @restaurant.update(permitted_attributes(@restaurant))
       render json: @restaurant
     else
       render json: @restaurant.errors, status: :unprocessable_entity
@@ -35,6 +38,7 @@ class Api::V1::RestaurantsController < Api::V1::BaseController
 
   # DELETE /restaurants/1
   def destroy
+    authorize @restaurant
     @restaurant.destroy
   end
 
@@ -45,7 +49,4 @@ class Api::V1::RestaurantsController < Api::V1::BaseController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def restaurant_params
-       params.require(:restaurant).permit()
-    end
 end
