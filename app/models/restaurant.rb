@@ -14,6 +14,6 @@ class Restaurant < ApplicationRecord
 
   # Autocode: Callbacks
 
-	# Soft Destroy
+  # Soft Destroy
 
 end

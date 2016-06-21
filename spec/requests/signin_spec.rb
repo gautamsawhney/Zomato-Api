@@ -7,7 +7,7 @@ describe "Signin API" do
     it "creates a new Auth Token " do
       headers = { "CONTENT_TYPE" => "application/json" }
       post "/login", '{ "user": { "email": "'+user.email+'", "password": "12345678" } }', headers
-            expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       expect(json_response['auth_token']).to eql (user.authtokens.last.token)
     end
   end
@@ -16,7 +16,7 @@ describe "Signin API" do
     it "returns a json with error" do
       headers = { "CONTENT_TYPE" => "application/json" }
       post "/login", '{ "user": { "email": "'+user.email+'", "password": "invalidpassword" } }', headers
-            expect(response.status).to eq(400)
+      expect(response.status).to eq(400)
       expect(json_response["error"]).to eql ("Error with your email or password")
     end
   end
@@ -35,14 +35,14 @@ describe "Signin API" do
     it "creates a new Auth Token" do
       headers = { "CONTENT_TYPE" => "application/json" }
       post "/login", '{ "user": { "username": "'+user.username+'", "password": "12345678" } }', headers
-            expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       expect(json_response['auth_token']).to eql (user.authtokens.last.token)
     end
 
     it "returns a json with error" do
       headers = { "CONTENT_TYPE" => "application/json" }
       post "/login", '{ "user": { "username": "'+user.username+'", "password": "invalidpassword" } }', headers
-            expect(response.status).to eq(400)
+      expect(response.status).to eq(400)
       expect(json_response["error"]).to eql ("Error with your email or password")
     end
 

@@ -128,7 +128,7 @@ ActiveAdmin.setup do |config|
   # to be used for ordering:
   # config.comments_order = 'created_at ASC'
   config.comments = false
-        config.comments_registration_name = 'AdminComment'
+  config.comments_registration_name = 'AdminComment'
   #
   # You can disable the menu item for the comments index page:
   # config.comments_menu = false

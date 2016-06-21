@@ -6,7 +6,7 @@ describe "Signup API" do
     it "creates a new user with basic/email login" do
       headers = { "CONTENT_TYPE" => "application/json" }
       post '/signup', '{ "user": { "email":"abc@po.com", "password":"abcdabcd", "password_confirmation":"abcdabcd"} }', headers
-            expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       expect(json_response['message']).to eq("abc@po.com was succesfully created")
       expect(json_response['auth_token']).to be_truthy
     end
@@ -16,7 +16,7 @@ describe "Signup API" do
     it "creates a new user login" do
       headers = { "CONTENT_TYPE" => "application/json" }
       post '/signup', '{ "user": { "email":"abc@po.com", "username": "abc", "password":"abcdabcd", "password_confirmation":"abcdabcd"} }', headers
-            expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       expect(json_response['message']).to eq("abc@po.com was succesfully created")
       expect(json_response['auth_token']).to be_truthy
     end

@@ -21,37 +21,37 @@ class CommentPolicy < ApplicationPolicy
   end
 
   # Autobot: Permitted Attributes
-def permitted_attributes
-                  #add_here
-if user.restaurant_owner?
-              [:title, :user_id, :post_id]
-              elsif user.super_admin?
-              [:title, :user_id, :post_id]
-              elsif user.mod?
-              [:title, :user_id, :post_id]
-              else
-                []
-               end
-                end
+  def permitted_attributes
+    #add_here
+    if user.restaurant_owner?
+      [:title, :user_id, :post_id]
+    elsif user.super_admin?
+      [:title, :user_id, :post_id]
+    elsif user.mod?
+      [:title, :user_id, :post_id]
+    else
+      []
+    end
+  end
 
 
 
   # Autobot: Permitted Actions
-def destroy?
-                #return true if record.user_id == user.id
-                user.super_admin? || user.mod?
-              end
-def update?
-                #return true if record.user_id == user.id
-                user.restaurant_owner? || user.super_admin? || user.mod?
-              end
- def show?
-                  user.restaurant_owner? || user.super_admin? || user.mod?
-                end
-def create?
-                #return true if record.user_id == user.id
-                user.restaurant_owner? || user.super_admin? || user.mod?
-              end
+  def destroy?
+    #return true if record.user_id == user.id
+    user.super_admin? || user.mod?
+  end
+  def update?
+    #return true if record.user_id == user.id
+    user.restaurant_owner? || user.super_admin? || user.mod?
+  end
+  def show?
+    user.restaurant_owner? || user.super_admin? || user.mod?
+  end
+  def create?
+    #return true if record.user_id == user.id
+    user.restaurant_owner? || user.super_admin? || user.mod?
+  end
 
 
 end
