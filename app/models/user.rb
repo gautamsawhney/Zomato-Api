@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  enum roles: [:restaurant_owner, :super_admin, :mod]
 
 # Include default devise modules. Others available are:
 # :confirmable, :lockable, :timeoutable and :omniauthable
