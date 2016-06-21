@@ -61,3 +61,5 @@ end
 
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+
+gem 'activeadmin', github: 'activeadmin'
