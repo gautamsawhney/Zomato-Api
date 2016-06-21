@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	let(:restaurant) { FactoryGirl.build(:restaurant) }
+
+	context 'validations' do
+		#addhere
+    it { expect(restaurant).to validate_presence_of(:location) }
+    it { expect(restaurant).to validate_uniqueness_of(:name) }
+    it { expect(restaurant).to validate_presence_of(:name) }
+	end
 end
